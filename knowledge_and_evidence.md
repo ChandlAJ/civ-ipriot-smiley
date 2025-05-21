@@ -147,18 +147,21 @@ python3 main.py
   Use the following table for your answers:
 
 | Class Name | Super or Sub? | Direct parent(s) |
-| ---------- | ------------- | ---------------- |
-| NotReal    | Sub           | NotRealParent    |
-|   ...      |   ...         |      ...         |
+|------------|---------------|------------------|
+| Smiley     | Super         | nil              |
+| Happy      | Subclass...   | Smiley           |
+| Sad        | Subclass...   | Smiley           |
+| Blinkable  | Subclass...   | Happy            |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
-> Your answer here
+> Abstraction allows certain features and complexity of a class to be hidden from areas of code to create a clean and maintainable code within the program, in this case the blinkable.py file contains an abstract method for the blink function within the class.
 >
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
 
-> Your answer here
+> Inheritance, in this project inheritance is used to ensure the initial set up of the base for a smiley is initialised before making alterations to display the specific look of the happy and sad classes. 
+> This means these attributes only need to be declared once at the parent class level, creating efficiency in the code.
 >
 
 ### 2.5. Compare and contrast classes
