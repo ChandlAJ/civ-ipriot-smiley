@@ -69,11 +69,11 @@ python3 main.py
 
 1. Examine the code for the `smiley.py` file and provide  an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
 
-   | Type                    | name   | value           |
-   | ----------              |--------|-----------------|
-   | built-in primitive type | _      | _               |
-   | built-in composite type | WHITE  | (255, 255, 255) |
-   | user-defined type       | Smiley | _               |
+   | Type                    | name        | value                              |
+   | ----------              |-------------|------------------------------------|
+   | built-in primitive type | int         | 255 (used in colours list)         |
+   | built-in composite type | WHITE       | (255, 255, 255)                    |
+   | user-defined type       | dim_display | self.sense_hat.low_light = dimmed  |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
@@ -95,38 +95,43 @@ python3 main.py
 
    | Type                    | Used? | Example                                                          |
    | ----------------------- |-------|------------------------------------------------------------------|
-   | int                     | _     | _                                                                |
+   | int                     | yes   | used within lists in the happy.py file for mouth and eyes        |
    | float                   | yes   | used in happy.py file for delay parameter in blink method (0.25) |
-   | str                     | _     | _                                                                |
-   | bool                    | _     | _                                                                |
+   | str                     | no    | EXAMPLE: greeting = "Hello and welcome"                          |
+   | bool                    | yes   | wide_open parameter used in both sad.py and happy.py files       |
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
-> Your answer here
+> YELLOW is an example of a class variable as it's value is remains consistent for all instances of a smiley. Conversely, the self.pixels variable is an instance variable as it is defined within the "__init__" method and
+> it's value can vary with each instance and based on the object it references (self).
 >
 
 6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   > Your answer here
+   > The constructor in the happy.py file is the "def __init__(self):"
+   > The purpose of a constructor is to assign attributes to an object when it is created, to reduce manual input and mitigate the risk of errors. 
+   > In the constructor within the happy.py file, it serves the purpose of ensuring the base smiley is created with the correct pixel layout for the eyes and mouth.
    >
 
    2. What statement(s) does it execute (consider the `super` call), and what is the result?
 
-   > Your answer here
+   > The super() method will ensure that all the Smiley class attributes are applied before the changes within the Happy constructor are run. 
+   > Following this, the self.draw_mouth and self.draw_eyes will change the relevant pixels to black to reflect the happy smiley, thus creating the appearance of a happy face.
    >
 
 ### 2.3. Code style
 
 1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
 
-> Your answer here
+> The code utilises the PEP8 style. It is likely that the same code style is applied in the SenseHat as it is the widely accepted and followed style for Python code that is widely adopted.
 >
 
 2. List three aspects of this convention you see applied in the code.
 
-> Your answer here
->
+> Indentation: the code has been written adhering to the PEP8 convention for indentation by utilising 4 spaces.
+> Comments: The code includes clear comments in a sentence structure, and where applicable docstrings have also been included when defining functions.
+> Naming conventions: the appropriate naming conventions according to the PEP8 guidelines have been used throughout the code, with classes using Camel case and all functions and variables being in snake case.
 
 3. Give two examples of organizational documentation in the code.
 
