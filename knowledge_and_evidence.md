@@ -53,7 +53,7 @@ Address the following tasks and questions based on the code provided in this rep
 3. Run the project locally by executing the `main.py` file
 4. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
-![Local Execution screenshots](2.1_screenshot_project_directory.png)
+![Local Execution screenshots](screenshots/2.1_screenshot_project_directory.png)
 ![Local Execution screenshots](screenshots/2.1_screenshot_output_mainpy.png)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
@@ -169,28 +169,33 @@ python3 main.py
 Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
-   > Your answer here
+   > The ket difference in the Happy and Sad classes is that the Happy class inherits from two parent classes, "Smiley" and "Blinkable" and as such by default has the additional attributes as the Sad class is only inheriting from "Smiley".
    >
 2. What are the key similarities?
-   > Your answer here
+   > Both the Happy and Sad classes inherit the attributes of the "Smiley" class and include functions to alter the pixel colours of the smiley to draw a mouth and eyes that are reflect the 'mood' that the class is representative of.
    >
 3. What difference stands out the most to you and why?
-   > Your answer here
+   > The definition of the blink function being present in the Happy class but not in the Sad class is the point of difference that most stands out. 
+   > It is evident that there is additional functionality built within the Happy class that provides more interactivity through the calling of methods.
    >
 4. How does this difference affect the functionality of these classes
-   > Your answer here
+   > The inclusion of the blink function in the Happy class allows for the blink method to be called on an instance of the class. 
+   > That is, a smiley within the Happy class has the ability to blink, whereas those within the Sad class do not, given that the blink function is not declared.
    >
 
 ### 2.6. Where is the Sense(Hat) in the code?
 
 1. Which class(es) utilize the functionality of the SenseHat?
-   > Your answer here
+   > The Smiley class directly imports the functionality of SenseHat and therefore can use it. 
+   > Additionally, both the Happy and Sad classes can utilise SenseHat functionality through inheritance from the parent class Smiley, although they do not directly import it. 
    >
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Your answer here
+   > The Smiley class is the only class that can directly interact with the SenseHat functionality as it is the only one in which SenseHat is imported into.
    >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
-   > Your answer here
+   > Encapsulation has been used to hide the functionality of SenseHat within the Sad and Happy classes in that it is inherited from the parent Smiley class. Both classes can perform functions by calling those of the parent class however there is no written SenseHat code in either.
+   > Additionally, the base code of the SenseHat is hidden and encapsulated even at the parent class (Smiley) level as it has been defined as its own class and then imported into the Smiley class. 
+   > This means that the base code of SenseHat cannot be altered from within any of the smiley classes and is protected in this way through its encapsulation.
    >
 
 ### 2.7. Sad Smileys Can’t Blink (Or Can They?)
@@ -201,17 +206,17 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
-> Your answer here
+> No, the author of the code believes that only Happy smileys should be able to blink. If it was a behaviour that is to be expected of all smileys, it would be defined within the parent class (Smiley) however this is not the case and in fact is only defined in the Happy class.
 >
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
-> Your answer here
+> Yes, it appears that the author believes all smileys should blink the same, this can be determined by the fact that the parameters for the blink function, and specifically the delay has been set and does not reference a variable that can be altered from one instance to another.
 >
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
-> Your answer here
+> Polymorphism enables different classes to have methods with a shared name that initiate different behaviours from one another. In reference to the blink function, Polymorphism can be used to enable the blink function to elicit differing behaviours within the smiley, this means that the way a happy smiley blinks can look different to how a sad smiley blinks.
 >
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
@@ -223,8 +228,12 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
    - Create a new method called `blink` within the Sad class. Ensure you use the same method signature as in the Happy class:
 
    ```python
-   def blink(self, delay=0.25):
-       pass  # Replace 'pass' with your implementation
+    def blink(self, delay = 0.50):
+        self.draw_eyes(wide_open=False)
+        self.show()
+        time.sleep(delay)
+        self.draw_eyes(wide_open=True)
+        self.show()
    ```
 
 2. **Code Implementation:** Implement the code that allows the Sad smiley to blink. Use the implementation from the Happy Smiley as a reference. Ensure your new method functions similarly by controlling the blink duration through the `delay` argument.
@@ -235,11 +244,11 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 Include a screenshot of the sad smiley or the modified `main.py`:
 
-![Sad Smiley Blinking](screenshots/sad_blinking.png)
+![Sad Smiley Blinking](screenshots/main.py_update_sad.png)
 
 - Observe and document the Sad smiley as it blinks its eyes. Describe any adjustments or issues encountered during implementation.
 
-  > Your answer here
+  > A couple of adjustments were required to successfully implement a blinking sad smiley, these were that the Sad class had to be imported into the main.py file and the defined smiley variable within the main() function needed to be updated to reference Sad() rather than Happy().
 
   ### 2.8. If It Walks Like a Duck…
 
@@ -247,23 +256,24 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   1. **Class Type Analysis:** What kind of class is `Blinkable`? Inspect its superclass for clues about its classification.
 
-     > Your answer here
+     > The Blinkable class is an abstract base class.
 
   2. **Class Implementation:** `Blinkable` is a class intended to be implemented by other classes. What generic term describes this kind of class, which is designed for implementation by others? **Clue**: Notice the lack of any concrete implementation and the naming convention.
 
-  > Your answer here
+  > Abstract base class
 
   3. **OO Principle Identification:** Regarding your answer to question (2), which Object-Oriented (OO) principle does this represent? Choose from the following and justify your answer in 1-2 sentences: Abstraction, Polymorphism, Inheritance, Encapsulation.
 
-  > Your answer here
+  > It represents the Abstraction principle. The class does not contain detail or implementation of how the blink function operates, only that it is present and that it will be inherited by child classes.
 
   4. **Implementation Flexibility:** Explain why you could grant the Sad Smiley a blinking feature similar to the Happy Smiley's implementation, even without directly using `Blinkable`.
 
-  > Your answer here
+  > By defining a blink function directly into the Sad class, it enabled the sad smiley to perform a blink despite the fact that it did not inherit the attributes of the Blinkable class.
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
-  > Your answer here
+  > This capabilty is known as Duck typing. The reason that it can work in python, and other dynamically typed languages is that the object is defined at the time they run, and based on their attributes rather than being explicitly defined. 
+  > Conversely, in a statically typed languages this doesn't work as the object needs to be declared to a specific class for compiling and the attributes of an object cannot overwrite this.
 
   ***
 
@@ -276,15 +286,16 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   1. **Defined Colors and Their Location:**
 
      1. Which colors are defined and in which class(s)?
-        > Your answer here
+        > The colours of WHITE, GREEN, RED, YELLOW and BLACK are defined within the Smiley class.
      2. What type of variables hold these colors? Are the values expected to change during the program's execution? Explain your answer.
-        > Your answer here
+        > There variables for each colour are contained within a tuple, these are not expected to change at all during execution of the program as tuples are immutable and so the values cannot be changed once they have been created.
      3. Add the color blue to the appropriate class using the appropriate format and values.
+        > BLUE = (0, 0, 255)
 
   2. **Usage of Color Variables:**
 
      1. In which classes are the color variables used?
-        > Your answer here
+        > The colour variables are used in each of the Smiley, Happy and Sad classes.
 
   3. **Simple Method to Change Colors:**
   4. What is the easiest way you can think to change the smileys to green? Easiest, not necessarily the best!
