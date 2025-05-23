@@ -299,7 +299,8 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   3. **Simple Method to Change Colors:**
   4. What is the easiest way you can think to change the smileys to green? Easiest, not necessarily the best!
-     > Your answer here
+     > The easiest way to change the colour of the smiley to green is to update the YELLOW variable defined in the Smiley class to a value of (0, 255, 0) as this will result in the colour appearing as green wherever the YELLOW variable is used. 
+     > As a result, this only requires one change to the entire code to make the effect.
 
   Here's a revised version of the "Flexible Colors – Step 1" section for the smiley project, incorporating your specifications for formatting and content updates:
 
